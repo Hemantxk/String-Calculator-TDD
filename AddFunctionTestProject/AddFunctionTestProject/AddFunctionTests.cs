@@ -198,5 +198,29 @@ namespace AddFunctionTestProject
             var exception10 = Assert.ThrowsException<Exception>(() => { StringCalculator.Add(input10); });
             Assert.AreEqual("negatives not allowed: -7", exception10.Message, "Exception message not matched, case: " + input10);
         }
+
+        [TestMethod]
+        public void AllNumbersGreaterThanOrEqualThousandTest()
+        {
+            string input = "1000, 2000";
+            int result = 0;
+            Assert.AreEqual(result, StringCalculator.Add(input));
+        }
+
+        [TestMethod]
+        public void FewNumbersGreaterThanOrEqualThousandTest()
+        {
+            string input = "5, 500, 500, 1000";
+            int result = 1005;
+            Assert.AreEqual(result, StringCalculator.Add(input));
+        }
+
+        [TestMethod]
+        public void DelimiterMoreThanOneCharTest()
+        {
+            string input = "//***\n1***2***3";
+            int result = 6;
+            Assert.AreEqual(result, StringCalculator.Add(input));
+        }
     }
 }
