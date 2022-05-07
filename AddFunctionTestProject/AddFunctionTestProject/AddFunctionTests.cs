@@ -222,5 +222,32 @@ namespace AddFunctionTestProject
             int result = 6;
             Assert.AreEqual(result, StringCalculator.Add(input));
         }
+
+        //delimiter contains * then multiply instead of adding.
+        //   //*\n1*2*3 => 6
+        //   //*+*\n10*+*20*+*30 => 6000
+        [TestMethod]
+        public void AstAsDelimiterSimple()
+        {
+            string input = "//*\n1*2*3";
+            int result = 6;
+            Assert.AreEqual(result, StringCalculator.Add(input));
+        }
+
+        [TestMethod]
+        public void AstWithMultiLengthDelimiter()
+        {
+            string input = "//*+*\n10*+*20*+*30";
+            int result = 6000;
+            Assert.AreEqual(result, StringCalculator.Add(input));
+        }
+
+        [TestMethod]
+        public void AstAsDelimiterAndNoNumbers()
+        {
+            string input = "//*\n";
+            int result = 1;
+            Assert.AreEqual(result, StringCalculator.Add(input));
+        }
     }
 }
